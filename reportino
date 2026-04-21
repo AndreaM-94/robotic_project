@@ -1,0 +1,23 @@
+Progetto di robotica LIVO md 360
+Report laboratorio robotica
+########### Aprile 22
+Abbiamo scelto il progetto basato su “Livox-MD-360”.  Passi preliminari:
+    1. Installazione di ubuntu 22.04
+    2. Installazione di ROS 2 humble
+    3. Installazione del sofware LIVOX viewer 2
+
+####Collegamento e Setup del sensore lidar
+Sudo apt install net-tools
+bisogna avviare la connessione con il sensore, quindi bisogna cercare la porta utilizzata dall’ethernet, con il comando:
+lshw -class network 
+
+
+
+Bisogna inserire il nome logico in :
+sudo ifconfig “nome_logico” 192.168.1.50
+
+#####Download livox viewer2
+www.livoxtech.com/mid-360/downloads
+Scaricare Livox Viewer 2 per linux, estrarre in una cartella il pacchetto e utilizzare il seguente comando:
+./livox_viewer_2.sh.
+Sostituire il nome se è diverso
