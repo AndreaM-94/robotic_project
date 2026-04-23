@@ -21,6 +21,11 @@ Scaricare Livox Viewer 2 per linux, estrarre in una cartella il pacchetto e util
 ./livox_viewer_2.sh.
 Sostituire il nome se è diverso.
 
+Link che ci servono
+https://github.com/Livox-SDK/livox_ros_driver2
+https://github.com/rajvishnu07/lio_sam_mid360?tab=readme-ov-file#readme
+Drivers
+https://github.com/Livox-SDK/Livox-SDK2/blob/master/README.md
 
 REPORT 23 Aprile
 bisogna settare il workspace di ROS2, quindi riferirsi a questa guida:
