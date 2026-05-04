@@ -7,10 +7,9 @@ Abbiamo scelto il progetto basato su “Livox-MD-360”.  Passi preliminari:
     3. Installazione del sofware LIVOX viewer 2
 Collegamento e Setup del sensore lidar
 Sudo apt install net-tools
+
 bisogna avviare la connessione con il sensore, quindi bisogna cercare la porta utilizzata dall’ethernet, con il comando:
 lshw -class network 
-
-
 
 Bisogna inserire il nome logico in :
 sudo ifconfig “nome_logico” 192.168.1.50
@@ -40,14 +39,49 @@ sudo apt install libgtsam-dev libgtsam-unstable-dev
 
 2) Creare la cartella del workspace
 mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws
 
 3) utilizzare questo comando per copiare la repository di github nel workspace creato(richiesto anche nella nostra repository)
 git clone https://github.com/rajvishnu07/lio_sam_mid360 src/LIO_SAM_MID360
 
 4) utilizzare il comando:
-cd ~/ros2_ws/src/LIO_SAM_MID360
+
 colcon build --symlink-install
 source install/setup.bash
 
 
 Build fatta e worspace pronto
+
+MAGGIO 4
+------------------------------- INSTALLAZIONE DRIVER E SDK-----------------------------
+1) PRIMA di collegare il dispositivo, reimpostare l'ip ethernet con "sudo ifconfig nome_logico 192.168.1.50
+2) Installare l'SDK con:
+        cd ~
+        git clone https://github.com/Livox-SDK/Livox-SDK2.git
+        cd Livox-SDK2
+        mkdir build && cd build
+        cmake .. && make -j
+        sudo make install
+3) Installare i driver LIVOX con:
+        mkdir -p ~/ws_livox/src
+        cd ~/ws_livox/src
+        git clone https://github.com/Livox-SDK/livox_ros_driver2.git
+        cd ~/ws_livox/src/livox_ros_driver2
+4) Costruzione del pacchetto:
+        source /opt/ros/humble/setup.bash
+        ./build.sh humble
+5) Nel terminale di installazione del driver scrivere il comando:
+        nano ~/ws_livox/src/livox_ros_driver2/config/MID360_config.json
+    Cambiare tutti gli IP con quello impostato nel passo 1.
+    Cambiare l'IP del dispositivo con 192.168.1.106
+
+-----------------------------------------------AVVIO
+ __TERMINALE 1
+ cd ~/ws_livox
+source install/setup.bash
+ros2 launch livox_ros_driver2 msg_MID360_launch.py
+
+ __TERMINALE 2
+cd ~/ros2_ws
+source install/setup.bash
+ros2 launch lio_sam_mid360 run.launch.py
