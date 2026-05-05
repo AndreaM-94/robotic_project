@@ -1,0 +1,50 @@
+Per salvare la mappa generata su rviz bisogna in ordine seguire i seguenti passaggi:
+
+1) Far riconoscere al terminale il workspace che stiamo usando:
+
+    source /opt/ros/$ROS_DISTRO/setup.bash
+    source ~/ros2_ws/install/setup.bash
+
+2) (Opzionale) Creare il percorso file per il salvataggio:
+
+    es mio pc:    mkdir -p /home/peppo/mappe/mappa_test
+
+3) Eseguire il comando di salvataggio:
+
+    ros2 service call /lio_sam/save_map lio_sam_mid360/srv/SaveMap "{resolution: 0.2, destination: mappe/mappa_test}"
+
+
+Fatto ciò sarà stata salvata la mappa generata da RViz
+----------------------------------------------------------------------------------------------------------------
+
+Apertura mappa
+
+Terminale 1:
+
+1)  Facciamo il source del workspace:
+
+    source /opt/ros/$ROS_DISTRO/setup.bash
+    source ~/ros2_ws/install/setup.bash
+
+2) Avviamo un nodo per la mappa per farla vedere da RViz:
+
+    ros2 run pcl_ros pcd_to_pointcloud --ros-args \
+        -p file_name:=/home/peppo/mappe/mappa_test/GlobalMap.pcd \   (Mettere la directory di dove è salvata GlobalMap)
+        -p publish_rate:=1.0
+
+   uscirà ora un topic chiamato /cloud_pcd, si può verificare la sua esistenza col comando: ros2 topic list | grep cloud
+
+Terminale 2:
+1) Eseguire il comando:
+
+    ros2 run tf2_ros static_transform_publisher 0 0 0 0 0 0 map base_link
+
+    serve a passare dal sistema di riferimento map a base_link (da problemi con map)
+
+Terminale 3:
+1) Mandare il comando: rviz2
+
+2) dentro rviz aggiungere PointCloud2
+    2.1) impostare il sottoparametro topic e mettere: /cloud_pcd
+
+Ora si vede la mappa
