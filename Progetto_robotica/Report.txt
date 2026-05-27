@@ -90,3 +90,9 @@ ros2 launch livox_ros_driver2 rviz_MID360_launch.py
 cd ~/ros2_ws
 source install/setup.bash
 ros2 launch lio_sam_mid360 run.launch.py
+
+
+ssh -Y rosys@10.0.0.200 //altrimenti non stampa rqt_graph!!!
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/key_vel
+
+prova

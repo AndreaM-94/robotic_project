@@ -32,6 +32,10 @@ Terminale 1:
         -p file_name:=/home/peppo/mappe/mappa_test/GlobalMap.pcd \   (Mettere la directory di dove è salvata GlobalMap)
         -p publish_rate:=1.0
 
+    ros2 run pcl_ros pcd_to_pointcloud --ros-args \
+        -p file_name:=/home/mappe/mappa_test/GlobalMap.pcd 
+        -p publish_rate:=1.0
+
    uscirà ora un topic chiamato /cloud_pcd, si può verificare la sua esistenza col comando: ros2 topic list | grep cloud
 
 Terminale 2:
