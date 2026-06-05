@@ -11,7 +11,7 @@ Per salvare la mappa generata su rviz bisogna in ordine seguire i seguenti passa
 
 3) Eseguire il comando di salvataggio:
 
-    ros2 service call /lio_sam/save_map lio_sam_mid360/srv/SaveMap "{resolution: 0.2, destination: mappe/mappa_test}"
+    ros2 service call /lio_sam/save_map lio_sam_mid360/srv/SaveMap "{resolution: 0.2, destination: /home/mappe/mappa_test2}"
 
 
 Fatto ciò sarà stata salvata la mappa generata da RViz
@@ -33,7 +33,7 @@ Terminale 1:
         -p publish_rate:=1.0
 
     ros2 run pcl_ros pcd_to_pointcloud --ros-args \
-        -p file_name:=/home/mappe/mappa_test/GlobalMap.pcd 
+        -p file_name:=/home/peppo/mappe/mappa_test2/GlobalMap.pcd 
         -p publish_rate:=1.0
 
    uscirà ora un topic chiamato /cloud_pcd, si può verificare la sua esistenza col comando: ros2 topic list | grep cloud

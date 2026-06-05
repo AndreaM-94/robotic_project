@@ -1,0 +1,16 @@
+Per l'analisi del rumore è stata registrata l'attività dell'imu del lidar per circa due minuti usando il comando:
+
+    timeout 120s ros2 bag record /livox/imu
+
+Una volta estratti i dati si deve entrare (da terminale) nella cartella  della bag, inserire all'interno della cartella lo script export_imu_from_bag.py
+ed eseguire il comando:
+
+    python3 export_imu_from_bag.py imu_noise_bag /livox/imu imu.csv
+
+così facendo si esportano i dati del rumore. Eseguendo ora i comandi:
+
+    python3 plot_imu.py
+    python3 stats_imu.py
+
+col primo visualizziamo graficamente il rumore registrato, mentre col secondo vediamo la media e la varianza del rumore, che poi possono essere inseriti
+nel file params.yaml del codice del lidar

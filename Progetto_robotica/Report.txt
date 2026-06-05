@@ -14,6 +14,8 @@ lshw -class network
 Bisogna inserire il nome logico in :
 sudo ifconfig “nome_logico” 192.168.1.50
 
+                Caso Peppe:  sudo ifconfig enp43s0 192.168.1.50
+
 Download livox viewer2
 www.livoxtech.com/mid-360/downloads
 Scaricare Livox Viewer 2 per linux, estrarre in una cartella il pacchetto e utilizzare il seguente comando:
