@@ -16,8 +16,47 @@ Per salvare la mappa generata su rviz bisogna in ordine seguire i seguenti passa
 
 Fatto ciò sarà stata salvata la mappa generata da RViz
 ----------------------------------------------------------------------------------------------------------------
+IMPORTANTE PRIMA DI APRIRE LA MAPPA 
 
-Apertura mappa
+    inserire dentro la cartella:  /ros2_ws/src/LIO_SAM_MID360
+    il file di configurazione per rviz2 lab_map.rviz sennò bisogna configurare i nodi manualmente
+
+Ovviamente al posto di /home/peppo bisogna mettere /home/nome_del_proprio_pc ogni volta che si vede questo comando 
+
+*****************************************************************************************************************
+Apertura mappa AUTOMATICA (se si è messo il parametro lab_map.rviz)
+
+Terminale 1:
+
+1)  Facciamo il source del workspace:
+
+    source /opt/ros/$ROS_DISTRO/setup.bash
+    source ~/ros2_ws/install/setup.bash
+
+2) Avviamo un nodo per la mappa per farla vedere da RViz:
+
+    ros2 run pcl_ros pcd_to_pointcloud --ros-args \
+        -p file_name:=/home/peppo/mappe/mappa_test/GlobalMap.pcd \   (Mettere la directory di dove è salvata GlobalMap)
+        -p publish_rate:=1.0
+
+    ros2 run pcl_ros pcd_to_pointcloud --ros-args \
+        -p file_name:=/home/peppo/mappe/mappa_test2/GlobalMap.pcd 
+        -p publish_rate:=1.0
+
+   uscirà ora un topic chiamato /cloud_pcd, si può verificare la sua esistenza col comando: ros2 topic list | grep cloud
+
+Terminale 2)
+
+Mandare il comando:
+
+    rviz2 -d /home/peppo/ros2_ws/src/LIO_SAM_MID360/lab_map.rviz
+
+******************************************************************************************************************************
+
+
+
+
+Apertura mappa MANUALMENTE (solo se non si ha il parametro lab_map.rviz)
 
 Terminale 1:
 
@@ -51,4 +90,5 @@ Terminale 3:
 2) dentro rviz aggiungere PointCloud2
     2.1) impostare il sottoparametro topic e mettere: /cloud_pcd
 
-Ora si vede la mappa
+
+
